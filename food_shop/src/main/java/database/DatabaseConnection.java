@@ -7,13 +7,13 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DatabaseConnection implements IDatabaseConnection {
-    private static Connection connection;
+    private Connection connection;
 
-    public static Connection getConnection(){
+    public Connection getConnection(){
         return connection;
     }
 
-    public static void connect() {
+    public void connect() {
         try {
             connection = DriverManager.getConnection("jdbc:sqlite:test.db");
         } catch (SQLException exception){
@@ -21,7 +21,7 @@ public class DatabaseConnection implements IDatabaseConnection {
         }
     }
 
-    public static void disconnect(){
+    public void disconnect(){
         try{
             connection.close();
         }catch (SQLException exception){

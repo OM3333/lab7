@@ -1,9 +1,12 @@
+import database.DatabaseConnection;
 import pl.umcs.oop.lec7.auth.AccountManager;
 import pl.umcs.oop.lec7.shop.Account;
 import pl.umcs.oop.lec7.shop.Cart;
 import pl.umcs.oop.lec7.shop.Product;
 
+import javax.xml.crypto.Data;
 import java.math.BigDecimal;
+import java.sql.SQLException;
 
 public class Main {
     public static Account login(AccountManager accountManager, String name, String password) {
@@ -13,26 +16,14 @@ public class Main {
             throw new RuntimeException("Wrong credentials");
     }
 
-    public static void main(String[] args) {
-        AccountManager manager = new AccountManager();
-        manager.register("alice", "secret");
-        Account alice = login(manager, "alice", "secret");
-
-        //Cart<FoodProduct> cart = alice.createCart();
-        FoodCart cart = new FoodCart(alice);
-
-        FoodProduct bread = new FoodProduct("bread",
-                new BigDecimal(5), 250);
-        FoodProduct butter = new FoodProduct("butter",
-                new BigDecimal(8), 700);
-
-        Product box = new Product("box",
-                new BigDecimal(8));
-
-        cart.add(bread);
-        cart.add(butter);
-        //cart.add(box);
-
-        System.out.println(cart.value());
+    public static void main(String[] args) throws SQLException {
+        DatabaseConnection databaseConnection = new DatabaseConnection();
+        AccountManager accountManager = new AccountManager(databaseConnection);
+        try{
+            var account = accountManager.getUser("test");
+            System.out.println(account);
+        } catch (SQLException exception){
+            exception.printStackTrace();
+        }
     }
 }

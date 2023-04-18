@@ -4,18 +4,10 @@ import java.sql.Connection;
 
 public interface IDatabaseConnection {
 
+    public Connection getConnection();
 
-    public static Connection getConnection() {
-        return null;
-    }
+    public void connect();
 
-    public static void connect(){
-
-    }
-
-    public static void disconnect(){
-
-    }
-
+    public void disconnect();
 
 }
