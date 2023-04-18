@@ -15,6 +15,13 @@
             <artifactId>bcrypt</artifactId>
             <version>0.10.2</version>
         </dependency>
+        <dependency>
+            <groupId>groupId</groupId>
+            <artifactId>shop</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>system</scope>
+            <systemPath>/home/student/Pulpit/programowanie/shop/out/artifacts/shop/shop.jar</systemPath>
+        </dependency>
     </dependencies>
 
     <properties>
